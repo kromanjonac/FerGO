@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.28" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.MainMenuController">
+  <items>
+    <AnchorPane fx:id="LeftAnchor" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <Button fx:id="btnCreateRac" layoutX="34.0" layoutY="73.0" mnemonicParsing="false" onAction="#clickCreateRac" text="Create race" textAlignment="CENTER">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnRunRac" layoutX="41.0" layoutY="167.0" mnemonicParsing="false" onAction="#clickRunRac" text="Run Race" textAlignment="CENTER">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="optionsGear" fitHeight="41.0" fitWidth="37.0" layoutX="14.0" layoutY="347.0" onMouseClicked="#clickGear" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../settings.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+    <AnchorPane fx:id="RightAnchor" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+  </items>
+</SplitPane>
