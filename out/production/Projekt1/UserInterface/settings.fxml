@@ -12,8 +12,8 @@
       <TextField layoutX="210.0" layoutY="333.0" prefHeight="26.0" prefWidth="371.0" />
       <Button layoutX="521.0" layoutY="408.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="70.0" text="Apply" />
       <Button layoutX="38.0" layoutY="85.0" mnemonicParsing="false" onAction="#clickSetExcel" prefHeight="26.0" prefWidth="127.0" text="Set Excel save Path" />
-      <Button layoutX="55.0" layoutY="160.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Button" />
-      <Button layoutX="55.0" layoutY="247.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Button" />
-      <Button layoutX="55.0" layoutY="333.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Button" />
+      <Button layoutX="38.0" layoutY="160.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" text="Set .rac save Path" />
+      <Button layoutX="38.0" layoutY="247.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" text="Set result listener" />
+      <Button layoutX="38.0" layoutY="333.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="127.0" text="Set final results" />
    </children>
 </AnchorPane>
