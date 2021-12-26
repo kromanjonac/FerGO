@@ -28,7 +28,7 @@
          </font>
       </Label>
       <ChoiceBox fx:id="ergsBox" layoutX="326.0" layoutY="328.0" prefHeight="25.0" prefWidth="41.0" />
-      <Button fx:id="confirmBtn" alignment="CENTER" layoutX="507.0" layoutY="409.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: dodgerblue;" text="Confirm" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="50.0">
+      <Button alignment="CENTER" layoutX="507.0" layoutY="409.0" mnemonicParsing="false" onAction="#confirmBtnClick" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: dodgerblue;" text="Confirm" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="50.0">
          <font>
             <Font name="Rockwell" size="14.0" />
          </font>

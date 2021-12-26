@@ -22,12 +22,13 @@ public class MainMenuController {
         main.showArgsInput();
     }
 
-    private void clickRunRac (ActionEvent e){
+    private void clickRunRac (){
 
     }
 
-    private void clickGear (ActionEvent e) {
-
+    @FXML
+    private void clickGear () throws IOException {
+        main.showSettings();
     }
 
     public void gearRotationEnter () {

@@ -22,7 +22,7 @@
                <font>
                   <Font name="Monospaced Bold" size="24.0" />
                </font></Button>
-            <ImageView fx:id="gear" fitHeight="43.0" fitWidth="42.0" layoutY="358.0" onMouseEntered="#gearRotationEnter" onMouseExited="#gearRotationExit" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+            <ImageView fx:id="gear" fitHeight="43.0" fitWidth="42.0" layoutX="7.0" layoutY="351.0" onMouseEntered="#gearRotationEnter" onMouseExited="#gearRotationExit" onMousePressed="#clickGear" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                <image>
                   <Image url="@../finalGear.png" />
                </image>

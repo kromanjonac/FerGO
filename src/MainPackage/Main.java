@@ -15,51 +15,29 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
 public class Main extends Application {
 
-private Stage primaryStage;
+public static Stage primaryStage;
 
 private static BorderPane mainLayout;
 
 public static RaceEvent currentEvent;
 
+public static Path excelSaveDir;
+
+public static Path racListener;
 
 
     @Override
     public void start(Stage stage) throws Exception{
 
-       // Font.loadFont("src/RobotoMono-VariableFont_wght.ttf", 20);
-
-
-//        Parent root = FXMLLoader.load(getClass().getResource("../UserInterface/MainMenu.fxml"));
-//        Scene scene = new Scene(root);
-//
-//
-//        //scene.getStylesheets().add(getClass().getResource("../UserInterface/styles.css").toExternalForm());
-           // String CSS = this.getClass().getResource("../UserInterface/styles.css").toExternalForm();
-//
-//
-//        //working setup
-//        scene.getStylesheets().add(CSS);
-//        stage.setMinWidth(1000);
-//        stage.setMinHeight(600);
-//        stage.setTitle("FerGO");
-//        stage.setScene(scene);
-//        stage.setResizable(false);
-//        stage.getIcons().add(new Image("LogoNonTrans.png"));
-//
-//        stage.show();
-
-        //DO TUD RADI
-
-        Font roboto = Font.loadFont(Main.class.getResource("RobotoMono-Medium.ttf").toExternalForm(),40);
         primaryStage = stage;
         primaryStage.setTitle("FerGO");
         primaryStage.setMinWidth(1000);
         primaryStage.setMinHeight(600);
         primaryStage.setTitle("FerGO");
-        //stage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("LogoNonTrans.png"));
 
@@ -94,6 +72,19 @@ public static RaceEvent currentEvent;
         mainLayout.setCenter(argsInp);
 }
 
+    public static void showCreateChoice () throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../UserInterface/CreateChoice.fxml"));
+        AnchorPane createChoice = loader.load();
+        mainLayout.setCenter(createChoice);
+    }
+
+    public static void showSettings () throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../UserInterface/settings.fxml"));
+        AnchorPane settingsPane = loader.load();
+        mainLayout.setCenter(settingsPane);
+    }
 
 
 

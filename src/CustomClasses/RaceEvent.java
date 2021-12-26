@@ -7,9 +7,13 @@ public class RaceEvent {
 
     //DATA
 
-    int numberOfTeams;
-    int numberOfRowers;
-    int numberOfErgs;
+    private int numberOfTeams;
+    private int numberOfRowers;
+    private int numberOfErgs;
+
+    private String name;
+
+
 
     List<Team> teamList;
 
@@ -38,7 +42,7 @@ public class RaceEvent {
         return numberOfTeams;
     }
 
-
-
-
+    public String getName() {
+        return name;
+    }
 }

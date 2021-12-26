@@ -1,12 +1,14 @@
 package UserInterface;
 
 
+import CustomClasses.RaceEvent;
 import MainPackage.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,9 +26,13 @@ public class ArgsInputController implements Initializable {
     ChoiceBox<Integer> ergsBox;
 //    @FXML
 //    Button confirmBtn;
-
-    private void confirmBtnClick() {
-
+    @FXML
+    private void confirmBtnClick() throws IOException {
+        int teams = teamsBox.getValue();
+        int rowers = rowersBox.getValue();
+        int ergs = ergsBox.getValue();
+        Main.currentEvent = new RaceEvent(teams,rowers,ergs);
+        main.showCreateChoice();
     }
 
 
