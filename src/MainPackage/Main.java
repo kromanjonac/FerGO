@@ -1,5 +1,6 @@
 package MainPackage;
 
+import CustomClasses.RaceEvent;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,7 +22,7 @@ private Stage primaryStage;
 
 private static BorderPane mainLayout;
 
-
+public static RaceEvent currentEvent;
 
 
 
