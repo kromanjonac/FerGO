@@ -1,7 +1,22 @@
 #btnCreateRac {
-    -fx-background-color: linear-gradient(to right,rgba(12,12,181,1),rgba(0,212,255,1));
-    /*linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);*/
-    /*-fx-font-family: "Roboto Light";
-    -fx-font: "Roboto";
-    -fx-font-size: 20px;*/
+    -fx-background-color: linear-gradient(to left, rgba(164,21,9,0.9), rgba(35,44,63,0.5));
+
+
+}
+#btnCreateRac:hover {
+    -fx-opacity: 0.85;
+    -fx-text-fill: red;
+
+
+}
+
+#btnRunRac {
+    -fx-background-color: linear-gradient(to left, rgba(164,21,9,0.9), rgba(35,44,63,0.5));
+}
+
+#btnRunRac:hover {
+    -fx-opacity: 0.85;
+    -fx-text-fill: red;
+
+
 }
