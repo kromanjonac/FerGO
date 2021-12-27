@@ -14,13 +14,18 @@ public class RaceEvent {
     private String name;
 
 
+    private int length;
+    private int splits;
+
 
     List<Team> teamList;
 
 
     // CONSTRUCTOR
 
-    public RaceEvent (int numberOfTeams, int numberOfRowers, int numberOfErgs) {
+    public RaceEvent (int numberOfTeams, int numberOfRowers, int numberOfErgs,String name, int length, int splits) {
+        this.name = name;
+
         this.numberOfTeams = numberOfTeams;
         this.numberOfRowers = numberOfRowers;
         this.numberOfErgs = numberOfErgs;

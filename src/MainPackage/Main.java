@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Main extends Application {
@@ -25,13 +26,31 @@ private static BorderPane mainLayout;
 
 public static RaceEvent currentEvent;
 
-public static Path excelSaveDir;
+public static Path excelSavePath;
 
-public static Path racListener;
+public static Path racSavePath;
+
+public static Path listenerPath;
+
+public static Path finalResPath;
+
 
 
     @Override
     public void start(Stage stage) throws Exception{
+
+        String excel = Files.readString(Path.of("src/SettingsPaths/ExcelSavePath.txt"));
+        if (!excel.isEmpty()) excelSavePath = Path.of(excel);
+
+        String rac = Files.readString(Path.of("src/SettingsPaths/RacSavePath.txt"));
+        if (!rac.isEmpty()) racSavePath = Path.of(rac);
+
+        String listener = Files.readString(Path.of("src/SettingsPaths/ListenerPath.txt"));
+        if(!listener.isEmpty()) listenerPath = Path.of(listener);
+
+        String finalRes = Files.readString(Path.of("src/SettingsPaths/FinalResPath.txt"));
+        if(!finalRes.isEmpty()) finalResPath = Path.of(finalRes);
+
 
         primaryStage = stage;
         primaryStage.setTitle("FerGO");
@@ -81,7 +100,7 @@ public static Path racListener;
 
     public static void showSettings () throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("../UserInterface/settings.fxml"));
+        loader.setLocation(Main.class.getResource("../SettingsPaths/settings.fxml"));
         AnchorPane settingsPane = loader.load();
         mainLayout.setCenter(settingsPane);
     }

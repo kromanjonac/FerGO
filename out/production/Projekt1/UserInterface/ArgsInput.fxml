@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,25 +11,24 @@
 
 <AnchorPane prefHeight="457.0" prefWidth="606.0" style="-fx-background-color: rgb(65,65,65);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.ArgsInputController">
    <children>
-      <ChoiceBox fx:id="teamsBox" layoutX="347.0" layoutY="89.0" prefHeight="25.0" prefWidth="41.0" />
-      <Label layoutX="14.0" layoutY="87.0" text="Select number of teams:" textFill="WHITE">
+      <Label layoutX="9.0" layoutY="61.0" text="Number of teams:" textFill="WHITE">
          <font>
             <Font name="Monospaced Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="9.0" layoutY="215.0" prefHeight="28.0" prefWidth="482.0" text="Select number of rowers per team:" textFill="WHITE">
+      <Label layoutX="9.0" layoutY="141.0" prefHeight="28.0" prefWidth="385.0" text="Number of rowers per team:" textFill="WHITE">
          <font>
             <Font name="Monospaced Bold" size="24.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="rowersBox" layoutX="491.0" layoutY="216.0" prefHeight="25.0" prefWidth="41.0" />
-      <Label layoutX="9.0" layoutY="326.0" text="Select number of ergs:" textFill="WHITE">
+      <ChoiceBox fx:id="rowersBox" layoutX="394.0" layoutY="143.0" prefHeight="25.0" prefWidth="41.0" />
+      <Label layoutX="16.0" layoutY="215.0" text="Number of ergs:" textFill="WHITE">
          <font>
             <Font name="Monospaced Bold" size="24.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="ergsBox" layoutX="326.0" layoutY="328.0" prefHeight="25.0" prefWidth="41.0" />
-      <Button alignment="CENTER" layoutX="507.0" layoutY="409.0" mnemonicParsing="false" onAction="#confirmBtnClick" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: dodgerblue;" text="Confirm" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="50.0">
+      <ChoiceBox fx:id="ergsBox" layoutX="240.0" layoutY="217.0" prefHeight="25.0" prefWidth="41.0" />
+      <Button alignment="CENTER" layoutX="496.0" layoutY="409.0" mnemonicParsing="false" onAction="#confirmBtnClick" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: dodgerblue;" text="Confirm" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="25.0">
          <font>
             <Font name="Rockwell" size="14.0" />
          </font>
@@ -38,5 +38,29 @@
             <Image url="@LogoTrans.png" />
          </image>
       </ImageView>
+      <Label layoutX="16.0" layoutY="289.0" text="Event name: " textFill="WHITE">
+         <font>
+            <Font name="Monospaced Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="eventNameField" layoutX="183.0" layoutY="290.0" prefHeight="25.0" prefWidth="231.0" />
+      <TextField fx:id="raceLengthField" layoutX="196.0" layoutY="351.0" />
+      <Label layoutX="16.0" layoutY="349.0" text="Race length: " textFill="WHITE">
+         <font>
+            <Font name="Monospaced Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="351.0" layoutY="349.0" text="meters" textFill="WHITE">
+         <font>
+            <Font name="Monospaced Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="16.0" layoutY="399.0" text="Splits: " textFill="WHITE">
+         <font>
+            <Font name="Monospaced Bold" size="24.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="splitsBox" layoutX="125.0" layoutY="401.0" prefHeight="25.0" prefWidth="41.0" />
+      <TextField fx:id="teamsField" layoutX="250.0" layoutY="63.0" prefHeight="25.0" prefWidth="50.0" />
    </children>
 </AnchorPane>

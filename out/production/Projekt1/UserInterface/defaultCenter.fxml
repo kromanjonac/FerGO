@@ -18,5 +18,15 @@
             <Font name="Monospaced Bold" size="26.0" />
          </font>
       </Label>
+      <Label layoutX="22.0" layoutY="291.0" prefHeight="42.0" prefWidth="597.0" text="before any action, please navigate to settings and set specified paths" textFill="RED">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="254.0" text="*NOTE" textFill="RED">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

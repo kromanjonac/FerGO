@@ -2,9 +2,7 @@ package UserInterface;
 
 import MainPackage.Main;
 import javafx.animation.RotateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
