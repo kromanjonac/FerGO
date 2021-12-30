@@ -27,6 +27,11 @@
                   <Image url="@finalGear.png" />
                </image>
             </ImageView>
+            <Button fx:id="excelBtn" layoutX="21.0" layoutY="257.0" mnemonicParsing="false" onAction="#clickExcel" prefHeight="70.0" prefWidth="158.0" style="-fx-background-radius: 40px;" text="Use Excel" textFill="WHITE">
+               <font>
+                  <Font name="Monospaced Bold" size="22.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </left>

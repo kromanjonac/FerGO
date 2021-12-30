@@ -133,6 +133,15 @@ public static Path finalResPath;
         mainLayout.setCenter(manualEndPane);
     }
 
+    public static void showExcelInput () throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../ExcelPane.fxml"));
+        AnchorPane excelPane = loader.load();
+        mainLayout.setCenter(excelPane);
+    }
+
+
+
 
 
 

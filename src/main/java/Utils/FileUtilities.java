@@ -95,7 +95,7 @@ public class FileUtilities {
         }
 
         //Create file system using specific name
-        FileOutputStream out = new FileOutputStream(new File(folderName.concat(eventName).concat(".xlsx")));
+        FileOutputStream out = new FileOutputStream(new File(folderName.concat("\\").concat(eventName).concat(".xlsx")));
 
         //write operation workbook using file out object
         workbook.write(out);

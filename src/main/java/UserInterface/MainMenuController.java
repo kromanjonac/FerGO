@@ -2,8 +2,10 @@ package UserInterface;
 
 
 import MainPackage.Main;
+import Utils.FileUtilities;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
@@ -12,6 +14,9 @@ import java.io.IOException;
 public class MainMenuController {
 
     private Main main;
+
+    @FXML
+    Button excelBtn;
 
     @FXML
     ImageView gear;
@@ -30,6 +35,11 @@ public class MainMenuController {
     @FXML
     private void clickGear () throws IOException {
         Main.showSettings();
+    }
+
+    @FXML
+    private void clickExcel () throws IOException {
+        Main.showExcelInput();
     }
 
     public void gearRotationEnter () {

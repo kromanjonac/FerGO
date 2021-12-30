@@ -17,6 +17,14 @@
 #btnRunRac:hover {
     -fx-opacity: 0.85;
     -fx-text-fill: red;
+}
 
+#excelBtn {
+    -fx-background-color: linear-gradient(to left, rgba(164,21,9,0.9), rgba(35,44,63,0.5));
+}
+
+#excelBtn:hover {
+    -fx-opacity: 0.85;
+    -fx-text-fill: red;
 
 }
