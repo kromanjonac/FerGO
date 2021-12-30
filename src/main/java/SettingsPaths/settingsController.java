@@ -72,36 +72,65 @@ public class settingsController  {
             writer.flush();
             writer.close();
             Main.excelSavePath = Path.of(excelPathField.getText());
+        } else {
+            FileWriter writer = new FileWriter("src/main/resources/ExcelSavePath.txt");
+            writer.write("");
+            writer.flush();
+            writer.close();
+            Main.excelSavePath = null;
         }
+
         if (!racPathField.getText().trim().isEmpty()) {
             FileWriter writer = new FileWriter("src/main/resources/RacSavePath.txt");
             writer.write(racPathField.getText().trim());
             writer.flush();
             writer.close();
             Main.racSavePath = Path.of(racPathField.getText());
+        } else {
+            FileWriter writer = new FileWriter("src/main/resources/RacSavePath.txt");
+            writer.write("");
+            writer.flush();
+            writer.close();
+            Main.racSavePath = null;
         }
+
+
+
         if(!listenerPathField.getText().trim().isEmpty()) {
             FileWriter writer = new FileWriter("src/main/resources/ListenerPath.txt");
             writer.write(listenerPathField.getText().trim());
             writer.flush();
             writer.close();
             Main.listenerPath = Path.of(listenerPathField.getText());
+        } else {
+            FileWriter writer = new FileWriter("src/main/resources/ListenerPath.txt");
+            writer.write("");
+            writer.flush();
+            writer.close();
+            Main.listenerPath = null;
         }
+
         if(!resultsPathField.getText().trim().isEmpty()) {
             FileWriter writer = new FileWriter("src/main/resources/FinalResPath.txt");
             writer.write(resultsPathField.getText().trim());
             writer.flush();
             writer.close();
             Main.finalResPath = Path.of(resultsPathField.getText());
+        } else {
+            FileWriter writer = new FileWriter("src/main/resources/FinalResPath.txt");
+            writer.write("");
+            writer.flush();
+            writer.close();
+            Main.finalResPath = null;
         }
     }
 
     @FXML
     public void showCurrentSettings () {
-        excelPathField.setText(Main.excelSavePath.toString());
-        racPathField.setText(Main.racSavePath.toString());
-        listenerPathField.setText(Main.listenerPath.toString());
-        resultsPathField.setText(Main.finalResPath.toString());
+        if(Main.excelSavePath != null) excelPathField.setText(Main.excelSavePath.toString());
+        if(Main.racSavePath != null) racPathField.setText(Main.racSavePath.toString());
+        if (Main.listenerPath != null) listenerPathField.setText(Main.listenerPath.toString());
+        if(Main.finalResPath != null) resultsPathField.setText(Main.finalResPath.toString());
     }
 
 
