@@ -1,12 +1,21 @@
 package Utils;
 
+import CustomClasses.RaceEvent;
+import CustomClasses.Rower;
+import CustomClasses.Team;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.usermodel.*;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.LinkedList;
+import java.util.List;
 
 public class FileUtilities {
     public static String createExcelFileForRaceEvent(int numberOfTeams, int numberOfRowers, int numberOfErgs, String eventName, int length, int splits, String folderName) throws IOException {
@@ -89,5 +98,84 @@ public class FileUtilities {
         //write operation workbook using file out object
         workbook.write(out);
         return eventName;
+    }
+
+    public static RaceEvent createRacFilesFromExcelSheet(File absExcelFilename) throws IOException {
+        FileInputStream inputStream = new FileInputStream(absExcelFilename);
+        XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+        XSSFSheet sheet = wb.getSheetAt(0);
+        int numberOfTeams = (int) sheet.getRow(1).getCell(4).getNumericCellValue();
+        int numberOfRowers = (int) sheet.getRow(1).getCell(5).getNumericCellValue();
+        int numberOfErgs = (int) sheet.getRow(1).getCell(3).getNumericCellValue();
+        int numberOfSplits = (int) sheet.getRow(1).getCell(2).getNumericCellValue();
+        int raceDistance =  (int) sheet.getRow(1).getCell(1).getNumericCellValue();
+        String eventName = sheet.getRow(1).getCell(0).getStringCellValue();
+
+
+        RaceEvent event = new RaceEvent(numberOfTeams,numberOfRowers,numberOfErgs,eventName,raceDistance,numberOfSplits);
+
+        for (int i = 3; i < 3 + numberOfTeams; i++) {
+            XSSFRow row = sheet.getRow(i);
+            String teamName = row.getCell(0).getStringCellValue();
+
+            Team currTeam = new Team(teamName);
+
+            for (int j = 2; j < numberOfRowers + 2; j++) {
+                Rower rower = new Rower(row.getCell(j).getStringCellValue());
+                currTeam.getRowers().add(rower);
+            }
+
+            event.getTeamList().add(currTeam);
+
+        }
+        return event;
+    }
+
+    public static void generateRacFilesFromRaceEvent(RaceEvent event, String folderName) throws IOException {
+        int m = (int) Math.ceil((double)event.getNumberOfTeams()/event.getNumberOfErgs());
+        List<Integer> raceSizes = new LinkedList<>();
+        int initSize = (int) Math.floor((double) event.getNumberOfTeams()/m);
+        int sum = event.getNumberOfTeams() - initSize*m ;
+        for (int i = 0; i < m; i++) {
+            if (i < sum){raceSizes.add(initSize+1);}
+            else {raceSizes.add(initSize);}
+        }
+        int StartingIndex = 0;
+        int EndingIndex = 0;
+        for (int i = 0; i < m; i++) {
+            StartingIndex = EndingIndex;
+            EndingIndex = StartingIndex + raceSizes.get(i);
+            for (int j = 0; j < event.getNumberOfRowers(); j++) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(folderName);
+                sb.append(event.getName()).append("_Group_").append(i+1).append("_Race_").append(j+1).append(".rac");
+                Path racFile = Paths.get(sb.toString());
+                List<String> lines = new LinkedList<>();
+                lines.add("RACE");
+                lines.add("108");
+                lines.add("0");
+                lines.add(sb.append("").toString());
+                //sb = new StringBuilder();
+
+                lines.add("1000");
+                lines.add("0");
+                lines.add("0");
+                lines.add("0");
+                lines.add("250");
+                lines.add("120");
+                lines.add(String.valueOf(raceSizes.get(i))+"");
+
+                for (int k = StartingIndex; k < EndingIndex; k++) {
+                    lines.add(event.getTeamList().get(k).getRowers().get(j).getName().concat(""));
+                    lines.add("0");
+                    lines.add("");
+                    lines.add("AFG");
+                    lines.add("");
+                }
+                lines.add("0\n");
+                Files.write(racFile,lines);
+            }
+            int pom = StartingIndex;
+        }
     }
 }
