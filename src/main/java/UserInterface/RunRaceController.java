@@ -12,10 +12,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class RunRaceController implements Initializable {
 
     private Thread t;
+    AtomicBoolean running = new AtomicBoolean(false);
 
     @FXML
     Button startBtn;
@@ -34,6 +36,7 @@ public class RunRaceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         column1.setSortable(false);
         column2.setSortable(false);
         wholeView.setEditable(false);
@@ -46,8 +49,9 @@ public class RunRaceController implements Initializable {
         t = new Thread(){
             @Override
             public void run() {
-                while(true) {
-                    String pathName = FolderListenerUtilities.newFileCreated(Main.listenerPath);
+                running.set(true);
+                while(running.get()) {
+                    String pathName = FolderListenerUtilities.newFileCreated(Main.listenerPath, running);
                     wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\")+1)));
                 }
 
@@ -64,7 +68,8 @@ public class RunRaceController implements Initializable {
     }
     @FXML
     private void clickFinish () {
-        t.interrupt();
+        running.set(false);
+        //
         finishBtn.setDisable(true);
         startBtn.setDisable(false);
     }
