@@ -6,7 +6,7 @@ import java.nio.file.*;
 import static java.nio.file.LinkOption.NOFOLLOW_LINKS;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 
-public class folderListenerUtilities {
+public class FolderListenerUtilities {
 
     public static String newFileCreated(Path path) { //static method that returns absolute string path to newly created object
         try { //check if the given path is folder !!!should never fail, but this is an extra safety measure!!!
