@@ -25,7 +25,8 @@ public class RaceEvent {
 
     public RaceEvent (int numberOfTeams, int numberOfRowers, int numberOfErgs,String name, int length, int splits) {
         this.name = name;
-
+        this.splits = splits;
+        this.length = length;
         this.numberOfTeams = numberOfTeams;
         this.numberOfRowers = numberOfRowers;
         this.numberOfErgs = numberOfErgs;
@@ -60,5 +61,13 @@ public class RaceEvent {
 
     public void removeTeam () {
         teamList.remove(teamList.size() - 1);
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getSplits() {
+        return splits;
     }
 }

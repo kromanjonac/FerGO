@@ -150,21 +150,23 @@ public class FileUtilities {
             EndingIndex = StartingIndex + raceSizes.get(i);
             for (int j = 0; j < event.getNumberOfRowers(); j++) {
                 StringBuilder sb = new StringBuilder();
-                sb.append(folderName);
+                sb.append(folderName).append("\\");
+                StringBuilder sb2 = new StringBuilder();
                 sb.append(event.getName()).append("_Group_").append(i+1).append("_Race_").append(j+1).append(".rac");
+                sb2.append(event.getName()).append("_Group_").append(i+1).append("_Race_").append(j+1).append(".rac");
                 Path racFile = Paths.get(sb.toString());
                 List<String> lines = new LinkedList<>();
                 lines.add("RACE");
                 lines.add("108");
                 lines.add("0");
-                lines.add(sb.append("").toString());
+                lines.add(sb2.append("").toString());
                 //sb = new StringBuilder();
 
-                lines.add("1000");
+                lines.add(String.valueOf(event.getLength()));
                 lines.add("0");
                 lines.add("0");
                 lines.add("0");
-                lines.add("250");
+                lines.add(String.valueOf(event.getLength()/event.getSplits()));
                 lines.add("120");
                 lines.add(String.valueOf(raceSizes.get(i))+"");
 

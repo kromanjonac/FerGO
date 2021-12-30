@@ -1,10 +1,13 @@
 package InputLocal;
 
+import MainPackage.Main;
+import Utils.FileUtilities;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,7 +20,11 @@ public class ManualEndController implements Initializable {
     Label confirmLabel;
 
     @FXML
-    public void clickGenerate () {
+    public void clickGenerate () throws IOException {
+
+        FileUtilities.generateRacFilesFromRaceEvent(Main.currentEvent,Main.racSavePath.toString());
+        confirmLabel.setVisible(true);
+        generateBtn.setDisable(true);
 
     }
 
