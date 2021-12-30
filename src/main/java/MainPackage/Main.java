@@ -139,6 +139,12 @@ public static Path finalResPath;
         AnchorPane excelPane = loader.load();
         mainLayout.setCenter(excelPane);
     }
+    public static void showRunRace () throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("../runRace.fxml"));
+        AnchorPane racePane = loader.load();
+        mainLayout.setCenter(racePane);
+    }
 
 
 

@@ -28,8 +28,9 @@ public class MainMenuController {
         Main.showArgsInput();
     }
 
-    private void clickRunRac (){
-
+    @FXML
+    private void clickRunRace () throws IOException {
+        Main.showRunRace();
     }
 
     @FXML
@@ -41,6 +42,8 @@ public class MainMenuController {
     private void clickExcel () throws IOException {
         Main.showExcelInput();
     }
+
+
 
     public void gearRotationEnter () {
         RotateTransition transition = new RotateTransition(Duration.seconds(0.5),gear);

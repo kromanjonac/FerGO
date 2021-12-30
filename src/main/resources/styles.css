@@ -1,17 +1,17 @@
 #btnCreateRac {
     -fx-background-color: linear-gradient(to left, rgba(164,21,9,0.9), rgba(35,44,63,0.5));
-
+    -fx-text-fill: white;
 
 }
 #btnCreateRac:hover {
     -fx-opacity: 0.85;
     -fx-text-fill: red;
 
-
 }
 
 #btnRunRac {
     -fx-background-color: linear-gradient(to left, rgba(164,21,9,0.9), rgba(35,44,63,0.5));
+    -fx-text-fill: white;
 }
 
 #btnRunRac:hover {
@@ -21,6 +21,7 @@
 
 #excelBtn {
     -fx-background-color: linear-gradient(to left, rgba(164,21,9,0.9), rgba(35,44,63,0.5));
+    -fx-text-fill: white;
 }
 
 #excelBtn:hover {
@@ -28,3 +29,4 @@
     -fx-text-fill: red;
 
 }
+

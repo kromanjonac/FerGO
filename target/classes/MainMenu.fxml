@@ -18,7 +18,7 @@
                <font>
                   <Font name="Monospaced Bold" size="19.0" />
                </font></Button>
-            <Button fx:id="btnRunRac" layoutX="21.0" layoutY="154.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="158.0" style="-fx-background-radius: 40px;" text="Run Race" textFill="WHITE">
+            <Button fx:id="btnRunRac" layoutX="21.0" layoutY="154.0" mnemonicParsing="false" onAction="#clickRunRace" prefHeight="70.0" prefWidth="158.0" style="-fx-background-radius: 40px;" text="Run Race" textFill="WHITE">
                <font>
                   <Font name="Monospaced Bold" size="24.0" />
                </font></Button>
