@@ -33,6 +33,9 @@ public class RaceEvent {
         teamList = new LinkedList<>();
     }
 
+    public List<Team> getTeamList() {
+        return teamList;
+    }
 
     // GETTERS
     public int getNumberOfErgs() {

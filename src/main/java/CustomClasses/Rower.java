@@ -11,4 +11,7 @@ public class Rower {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
 }
