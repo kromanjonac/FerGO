@@ -46,6 +46,8 @@ public static Path listenerPath;
 
 public static Path finalResPath;
 
+public static AnchorPane racePane;
+
 
 
 
@@ -65,6 +67,11 @@ public static Path finalResPath;
 
         String finalRes = Files.readString(Path.of("src/main/resources/FinalResPath.txt"));
         if(!finalRes.isEmpty()) finalResPath = Path.of(finalRes);
+
+        //race run
+        FXMLLoader raceRunloader = new FXMLLoader();
+        raceRunloader.setLocation(Main.class.getResource("../runRace.fxml"));
+        racePane = raceRunloader.load();
 
 
         primaryStage = stage;
@@ -140,9 +147,7 @@ public static Path finalResPath;
         mainLayout.setCenter(excelPane);
     }
     public static void showRunRace () throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("../runRace.fxml"));
-        AnchorPane racePane = loader.load();
+
         mainLayout.setCenter(racePane);
     }
 
