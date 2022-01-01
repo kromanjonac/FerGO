@@ -48,6 +48,27 @@ public class RunRaceController implements Initializable {
         column2.setCellValueFactory(new PropertyValueFactory<>("finish"));
 
 
+
+        t = new Thread(){
+            @Override
+            public void run() {
+                running.set(true);
+                while(running.get()) {
+                    String pathName = FolderListenerUtilities.newFileCreated(Main.listenerPath, running);
+                    wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\")+1)));
+                }
+
+            }
+        };
+    }
+    @FXML
+    private void clickStart () {
+        startBtn.setDisable(true);
+        finishBtn.setDisable(false);
+        t.setDaemon(true);
+        t.start();
+
+
         t = new Thread(){
             @Override
             public void run() {
@@ -62,14 +83,8 @@ public class RunRaceController implements Initializable {
 
         };
     }
-    @FXML
-    private void clickStart () {
-        startBtn.setDisable(true);
-        finishBtn.setDisable(false);
-        t.setDaemon(true);
-        t.start();
 
-    }
+
     @FXML
     private void clickFinish () {
         running.set(false);
