@@ -16,6 +16,7 @@ public class CreateChoiceController {
 
     @FXML
     private void generateLocally () throws IOException {
+        Main.goingForward = true;
         Main.currentTeam = 1;
         Main.showInputLocal();
     }

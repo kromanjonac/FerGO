@@ -77,6 +77,14 @@ public class InputLocalController implements Initializable {
             fieldList.get(i).setPromptText("Rower number " + (i+1)); //to set the hint text
             fieldList.get(i).getParent().requestFocus();
         }
+
+        if (!Main.goingForward) {
+            teamNameField.setText((Main.currentEvent.getTeamList().get(Main.currentTeam -1).getName()));
+            //if (Main.currentEvent.getTeamList().get(Main.currentTeam -1).getShortName() != null) shortTeamField.setText(Main.currentEvent.getTeamList().get(Main.currentTeam -1).getShortName());
+            for (int i = 0; i < Main.currentEvent.getNumberOfRowers(); i++) {
+                fieldList.get(i).setText(Main.currentEvent.getTeamList().get(i).getName());
+            }
+        }
     }
     
     @FXML
@@ -87,11 +95,17 @@ public class InputLocalController implements Initializable {
             if (fieldList.get(i).getText().trim().isEmpty()) return;
         }
 
+        Main.goingForward = true;
+
         //create new team
         Team team = new Team(teamNameField.getText());
         for (var currentRower: fieldList) {
             Rower rower = new Rower(currentRower.getText().trim());
             team.setRower(rower);
+        }
+
+        if (!shortTeamField.getText().isEmpty()) {
+            team.setShortName(shortTeamField.getText().trim());
         }
 
         Main.currentEvent.addTeam(team);
@@ -106,6 +120,7 @@ public class InputLocalController implements Initializable {
 
     @FXML
     public void clickBack() throws IOException {
+        Main.goingForward = false;
         if (Main.currentTeam == 1) {
             Main.showCreateChoice();
         }

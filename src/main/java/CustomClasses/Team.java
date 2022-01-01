@@ -9,6 +9,7 @@ public class Team {
 
     String name;
     List<Rower> rowers;
+    String shortName;
 
     public Team (String name, Rower... rowers) {
         this.name = name;
@@ -32,5 +33,17 @@ public class Team {
 
     public void setRower (Rower rower) {
         rowers.add(rower);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public String getShortName() {
+        return shortName;
     }
 }

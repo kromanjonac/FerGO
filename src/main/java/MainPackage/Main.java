@@ -46,6 +46,7 @@ public static Path listenerPath;
 
 public static Path finalResPath;
 
+public static boolean goingForward;
 
 
 
