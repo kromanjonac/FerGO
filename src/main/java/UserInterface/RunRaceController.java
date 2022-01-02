@@ -35,11 +35,14 @@ public class RunRaceController implements Initializable {
     @FXML
     TableView<TableViewElement> wholeView;
 
+    private Label placeholderLabel = new Label("Click \"Start\" to start ");
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Label placeholderLabel = new Label("Click \"Start\" to start ");
         placeholderLabel.setStyle("-fx-text-fill: white;");
         wholeView.setPlaceholder(placeholderLabel);
+
         column1.setSortable(false);
         column2.setSortable(false);
         wholeView.setEditable(false);
@@ -68,6 +71,8 @@ public class RunRaceController implements Initializable {
     }
     @FXML
     private void clickStart () {
+        placeholderLabel.setText("Finished races will start appearing now");
+        wholeView.setPlaceholder(placeholderLabel);
         startBtn.setDisable(true);
         finishBtn.setDisable(false);
         t.setDaemon(true);
