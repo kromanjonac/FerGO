@@ -6,6 +6,7 @@
 .button:hover {
     -fx-opacity: 0.85;
     -fx-text-fill: red;
+    -fx-alignment: center;
 }
 
 

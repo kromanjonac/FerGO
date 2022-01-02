@@ -6,6 +6,7 @@
 .button:hover {
     -fx-opacity: 0.85;
     -fx-text-fill: red;
+    -fx-alignment: center;
 }
 
 
@@ -81,6 +82,8 @@
     -fx-alignment: center-right;
 }
 
+
+/*micanje donjeg scrollbara - eksperimentalno*/
 .table-view *.scroll-bar:horizontal *.increment-button,
 .table-view *.scroll-bar:horizontal *.decrement-button {
     -fx-background-color: null;

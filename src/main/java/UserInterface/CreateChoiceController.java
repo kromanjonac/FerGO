@@ -3,15 +3,28 @@ package UserInterface;
 
 import MainPackage.Main;
 import Utils.FileUtilities;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class CreateChoiceController {
+public class CreateChoiceController implements Initializable {
 
     @FXML
     Button excelBtn;
+
+    @FXML
+    ImageView iconExcel;
+
+    @FXML
+    Label excelSuccess;
 
 
     @FXML
@@ -31,11 +44,24 @@ public class CreateChoiceController {
                 Main.currentEvent.getNumberOfErgs(),Main.currentEvent.getName(),Main.currentEvent.getLength(),Main.currentEvent.getSplits(),
                 Main.excelSavePath.toString());
 
+        FadeTransition transition = new FadeTransition(Duration.millis(1200),iconExcel);
+        FadeTransition transition2 = new FadeTransition(Duration.millis(500),excelSuccess);
+        transition2.setFromValue(0);
+        transition2.setToValue(1.0);
+        transition.setFromValue(0.0);
+        transition.setToValue(1.0);
+        iconExcel.setVisible(true);
+        transition.play();
         excelBtn.setDisable(true);
+        excelSuccess.setVisible(true);
+        transition2.play();
 
     }
 
 
-
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        iconExcel.setVisible(false);
+        excelSuccess.setVisible(false);
+    }
 }

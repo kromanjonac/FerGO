@@ -8,7 +8,7 @@ public class TableViewElement {
 
     public TableViewElement(String raceName) {
         this.raceName = raceName;
-        this.finish = new Button("Delete?");
+        this.finish = new Button("Delete");
     }
 
     public Button getFinish() {
