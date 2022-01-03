@@ -52,6 +52,7 @@ public class RunRaceController implements Initializable {
                 running.set(true);
                 while(running.get()) {
                     String pathName = FolderListenerUtilities.newFileCreated(Main.listenerPath, running);
+                    if (pathName == null){continue;}
                     wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\")+1)));
                 }
 

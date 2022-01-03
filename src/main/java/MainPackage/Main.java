@@ -68,6 +68,7 @@ public static AnchorPane racePane;
         String finalRes = Files.readString(Path.of("src/main/resources/FinalResPath.txt"));
         if(!finalRes.isEmpty()) finalResPath = Path.of(finalRes);
 
+
         //race run
         FXMLLoader raceRunloader = new FXMLLoader();
         raceRunloader.setLocation(Main.class.getResource("../runRace.fxml"));
