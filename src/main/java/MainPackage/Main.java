@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 
 import javafx.scene.layout.BorderPane;
 
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -48,6 +49,8 @@ public static Path finalResPath;
 
 public static boolean goingForward;
 
+private static AnchorPane racePane;
+
 
 
 
@@ -66,6 +69,10 @@ public static boolean goingForward;
 
         String finalRes = Files.readString(Path.of("src/main/resources/FinalResPath.txt"));
         if(!finalRes.isEmpty()) finalResPath = Path.of(finalRes);
+
+        FXMLLoader runRaceloader = new FXMLLoader();
+        runRaceloader.setLocation(Main.class.getResource("../runRace.fxml"));
+        racePane = runRaceloader.load();
 
 
         primaryStage = stage;
@@ -141,9 +148,9 @@ public static boolean goingForward;
         mainLayout.setCenter(excelPane);
     }
     public static void showRunRace () throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("../runRace.fxml"));
-        AnchorPane racePane = loader.load();
+
+
+
         mainLayout.setCenter(racePane);
     }
 
