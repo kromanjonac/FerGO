@@ -51,6 +51,8 @@ public static boolean goingForward;
 
 private static AnchorPane racePane;
 
+public static Object lock = new Object();
+
 
 
 
@@ -72,7 +74,9 @@ private static AnchorPane racePane;
 
         FXMLLoader runRaceloader = new FXMLLoader();
         runRaceloader.setLocation(Main.class.getResource("../runRace.fxml"));
-        racePane = runRaceloader.load();
+        synchronized (lock) {
+            racePane = runRaceloader.load();
+        }
 
 
         primaryStage = stage;
