@@ -42,7 +42,6 @@ public class RunRaceController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         placeholderLabel.setStyle("-fx-text-fill: white;");
         wholeView.setPlaceholder(placeholderLabel);
-
         column1.setSortable(false);
         column2.setSortable(false);
         wholeView.setEditable(false);
@@ -63,7 +62,9 @@ public class RunRaceController implements Initializable {
                 running.set(true);
                 while(running.get()) {
                     String pathName = FolderListenerUtilities.newFileCreated(Main.listenerPath, running);
-                    wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\")+1)));
+                    synchronized (wholeView) {
+                        wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\") + 1)));
+                    }
                 }
 
             }

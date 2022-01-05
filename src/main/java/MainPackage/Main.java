@@ -74,9 +74,8 @@ public static Object lock = new Object();
 
         FXMLLoader runRaceloader = new FXMLLoader();
         runRaceloader.setLocation(Main.class.getResource("../runRace.fxml"));
-        synchronized (lock) {
-            racePane = runRaceloader.load();
-        }
+        racePane = runRaceloader.load();
+
 
 
         primaryStage = stage;
