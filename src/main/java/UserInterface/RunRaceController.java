@@ -2,6 +2,7 @@ package UserInterface;
 
 import CustomClasses.TableViewElement;
 import MainPackage.Main;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -56,15 +57,17 @@ public class RunRaceController implements Initializable {
 
 
 
+
         t = new Thread(){
             @Override
             public void run() {
                 running.set(true);
                 while(running.get()) {
                     String pathName = FolderListenerUtilities.newFileCreated(Main.listenerPath, running);
-                    synchronized (wholeView) {
-                        wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\") + 1)));
-                    }
+
+
+                    Platform.runLater(()->wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\") + 1))));
+
                 }
 
             }
