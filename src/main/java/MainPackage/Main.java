@@ -40,8 +40,10 @@ public static Path finalResPath;
 
 private static AnchorPane racePane;
 
+
 // controls if a popup window should be invoked
 public static boolean isInputLocal = false;
+public static Object lock = new Object();
 
 
 
@@ -64,6 +66,7 @@ public static boolean isInputLocal = false;
         FXMLLoader runRaceloader = new FXMLLoader();
         runRaceloader.setLocation(Main.class.getResource("../runRace.fxml"));
         racePane = runRaceloader.load();
+
 
 
         primaryStage = stage;
