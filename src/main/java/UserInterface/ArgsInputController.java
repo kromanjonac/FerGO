@@ -3,14 +3,11 @@ package UserInterface;
 
 import CustomClasses.RaceEvent;
 import MainPackage.Main;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,7 +25,8 @@ public class ArgsInputController implements Initializable {
     @FXML
     TextField eventNameField = new TextField();
 
-
+    @FXML
+    Label warningLabel;
 
     @FXML
     ChoiceBox<Integer> splitsBox;
@@ -36,32 +34,35 @@ public class ArgsInputController implements Initializable {
     @FXML
     TextField teamsField = new TextField();
 
-//    @FXML
-//    ChoiceBox<Integer> teamsBox;
     @FXML
     ChoiceBox<Integer> rowersBox;
+
     @FXML
     ChoiceBox<Integer> ergsBox;
-//    @FXML
-//    Button confirmBtn;
-
 
     @FXML
     private void confirmBtnClick() throws IOException {
-       // int teams = teamsBox.getValue();
+        if (rowersBox.getSelectionModel().isEmpty()) return;
+        if (ergsBox.getSelectionModel().isEmpty()) return;
+        if (splitsBox.getSelectionModel().isEmpty()) return;
+        if (eventNameField.getText().isEmpty()) return;
+        if (raceLengthField.getText().isEmpty()) return;
+
+
+        try {
         int rowers = rowersBox.getValue();
         int ergs = ergsBox.getValue();
         int splits = splitsBox.getValue();
-        if (eventNameField.getText().trim().isEmpty()) return;
         Main.currentEvent = new RaceEvent(Integer.parseInt(teamsField.getText()),rowers,ergs,eventNameField.getText().trim(),Integer.parseInt(raceLengthField.getText()),splits);
-        Main.showCreateChoice();
+        Main.showCreateChoice(); } catch (NumberFormatException exception1) {
+            warningLabel.setVisible(true);
+        }
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        //teamsBox.getItems().addAll(numOfItems);
+        warningLabel.setVisible(false);
         rowersBox.getItems().addAll(numOfItems);
         ergsBox.getItems().addAll(numOfItems);
         splitsBox.getItems().addAll(numOfSplits);

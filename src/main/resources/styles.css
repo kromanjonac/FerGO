@@ -75,11 +75,11 @@
 }
 
 #column2:even {
-    -fx-alignment: center-left;
+    -fx-alignment: center;
 }
 
 #column2:odd {
-    -fx-alignment: center-right;
+    -fx-alignment: center;
 }
 
 

@@ -31,5 +31,10 @@
             <Font name="Monospaced Bold" size="13.0" />
          </font>
       </Label>
+      <Label fx:id="excelWarningLabel" layoutX="370.0" layoutY="342.0" text="Set excel path in settings" textFill="#ff1818" AnchorPane.bottomAnchor="120.0" AnchorPane.rightAnchor="95.0">
+         <font>
+            <Font name="Arial Black" size="10.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -2,26 +2,17 @@ package MainPackage;
 
 
 import CustomClasses.RaceEvent;
+import InputLocal.InputPopupController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-
 import javafx.scene.Scene;
-
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-
 import javafx.scene.layout.BorderPane;
-
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Objects;
 
 public class Main extends Application {
 
@@ -47,17 +38,17 @@ public static Path listenerPath;
 
 public static Path finalResPath;
 
-public static boolean goingForward;
-
 private static AnchorPane racePane;
+
+// controls if a popup window should be invoked
+public static boolean isInputLocal = false;
 
 
 
 
     @Override
     public void start(Stage stage) throws Exception{
-
-// procitaj iz fajlova ako ima
+        //read from files if they're not empty
         String excel = Files.readString(Path.of("src/main/resources/ExcelSavePath.txt"));
         if (!excel.isEmpty()) excelSavePath = Path.of(excel);
 
@@ -81,16 +72,13 @@ private static AnchorPane racePane;
         primaryStage.setMinHeight(600);
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("LogoNonTrans.png"));
-        //System.out.println(Main.class.getResource("../MainMenu.fxml"));
         showMainView();
         showDefaultCenter();
-
     }
 
 
     private void showMainView () throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        //loader.setLocation(Main.class.getResource("../UserInter"));
         mainLayout = loader.load(Main.class.getResource("../MainMenu.fxml"));
         Scene scene = new Scene(mainLayout);
         String CSS = this.getClass().getResource("../styles.css").toExternalForm();
@@ -107,6 +95,8 @@ private static AnchorPane racePane;
     }
 
     public static void showArgsInput () throws IOException {
+        if (isInputLocal) InputPopupController.showPopup();
+        if (isInputLocal) return;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("../ArgsInput.fxml"));
         AnchorPane argsInp = loader.load();
@@ -121,6 +111,8 @@ private static AnchorPane racePane;
     }
 
     public static void showSettings () throws IOException {
+        if(isInputLocal) InputPopupController.showPopup();
+        if (isInputLocal) return;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("../settings.fxml"));
         AnchorPane settingsPane = loader.load();
@@ -142,30 +134,24 @@ private static AnchorPane racePane;
     }
 
     public static void showExcelInput () throws IOException {
+        if(isInputLocal) InputPopupController.showPopup();
+        if (isInputLocal) return;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("../ExcelPane.fxml"));
         AnchorPane excelPane = loader.load();
         mainLayout.setCenter(excelPane);
     }
     public static void showRunRace () throws IOException {
-
+        if(isInputLocal) InputPopupController.showPopup();
+        if (isInputLocal) return;
 
 
         mainLayout.setCenter(racePane);
     }
 
 
-
-
-
-
-
     public static void main(String[] args) {
         launch(args);
     }
-
-
-
-
 
 }

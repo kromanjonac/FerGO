@@ -26,10 +26,13 @@ public class CreateChoiceController implements Initializable {
     @FXML
     Label excelSuccess;
 
+    @FXML
+    Label excelWarningLabel;
+
 
     @FXML
     private void generateLocally () throws IOException {
-        Main.goingForward = true;
+        Main.isInputLocal = true;
         Main.currentTeam = 1;
         Main.showInputLocal();
     }
@@ -39,11 +42,13 @@ public class CreateChoiceController implements Initializable {
         //tu pozovi metodu za odradit exelicu, posalji path i parametre
         // zalijepi label koji potvrduje da je fajl generiran (ili ako je greska?)
         //onemoguci gumb za generirat jos
-
-        FileUtilities.createExcelFileForRaceEvent(Main.currentEvent.getNumberOfTeams(),Main.currentEvent.getNumberOfRowers(),
-                Main.currentEvent.getNumberOfErgs(),Main.currentEvent.getName(),Main.currentEvent.getLength(),Main.currentEvent.getSplits(),
-                Main.excelSavePath.toString());
-
+        try {
+            FileUtilities.createExcelFileForRaceEvent(Main.currentEvent.getNumberOfTeams(), Main.currentEvent.getNumberOfRowers(),Main.currentEvent.getNumberOfErgs(), Main.currentEvent.getName(), Main.currentEvent.getLength(), Main.currentEvent.getSplits(),
+                    Main.excelSavePath.toString());
+        } catch (NullPointerException e) {
+            excelWarningLabel.setVisible(true);
+            return;
+        }
         FadeTransition transition = new FadeTransition(Duration.millis(1200),iconExcel);
         FadeTransition transition2 = new FadeTransition(Duration.millis(500),excelSuccess);
         transition2.setFromValue(0);
@@ -63,5 +68,6 @@ public class CreateChoiceController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         iconExcel.setVisible(false);
         excelSuccess.setVisible(false);
+        excelWarningLabel.setVisible(false);
     }
 }

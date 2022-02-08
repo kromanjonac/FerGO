@@ -2,7 +2,6 @@ package UserInterface;
 
 
 import MainPackage.Main;
-import Utils.FileUtilities;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,15 +12,11 @@ import java.io.IOException;
 
 public class MainMenuController {
 
-    private Main main;
-
     @FXML
     Button excelBtn;
 
     @FXML
     ImageView gear;
-
-
 
     @FXML
     private void clickCreateRac () throws IOException {
