@@ -112,8 +112,10 @@ public class RunRaceController implements Initializable {
         startBtn.setDisable(false);
 
         for (var racePath : Main.racePaths) {
-         String newFileName = RaceResultParserUtilities.createFormattedFile(racePath,racePath.substring(racePath.lastIndexOf('/')));
+         String newFileName = RaceResultParserUtilities.createFormattedFile(racePath,racePath);
+            System.out.println(racePath);
         }
+
     }
 
 }

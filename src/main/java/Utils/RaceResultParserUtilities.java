@@ -1,6 +1,7 @@
 package Utils;
 
 import CustomClasses.RaceEvent;
+import MainPackage.Main;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,9 +26,9 @@ public class RaceResultParserUtilities {
     public static String createFormattedFile(String paths, String name){ //creates excel ready file
         if (paths == null) {return "false";} //should never happen
         Path path = Paths.get(paths);
-        Path newFile = Paths.get("C:\\Users\\dobar\\OneDrive\\Radna površina\\Coding\\test_map\\".concat(name));
+        Path newFile = Paths.get(Main.finalResPath.toString().concat(name));
         try {
-            FileWriter myWriter = new FileWriter("C:\\Users\\dobar\\OneDrive\\Radna površina\\Coding\\test_map\\".concat(name));
+            FileWriter myWriter = new FileWriter(newFile.toString());
             Files.readAllLines(path).stream().filter(o -> {//lambda that filters actual (usable) data from description
                 if( o.split("\\,").length == 7 && !o.startsWith("Place")){
                     return true;
