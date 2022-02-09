@@ -13,8 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import Utils.FolderListenerUtilities;
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class RunRaceController implements Initializable {
@@ -112,7 +111,9 @@ public class RunRaceController implements Initializable {
         startBtn.setDisable(false);
 
         for (var racePath : Main.racePaths) {
-         String newFileName = RaceResultParserUtilities.createFormattedFile(racePath,racePath);
+            List<String> stringList = Arrays.asList(racePath.split("//"));
+            Collections.reverse(stringList);
+            String newFileName = RaceResultParserUtilities.createFormattedFile(racePath,stringList.get(0));
             System.out.println(racePath);
         }
 
