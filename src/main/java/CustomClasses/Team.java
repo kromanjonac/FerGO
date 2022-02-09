@@ -22,6 +22,14 @@ public class Team {
 
     }
 
+    public double getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(double totalTime) {
+        this.totalTime = totalTime;
+    }
+
     public Team (String name) {
         this.name = name;
 
