@@ -10,6 +10,7 @@ public class Team {
     String name;
     List<Rower> rowers;
     String shortName;
+    double totalTime = 0.;
 
     public Team (String name, Rower... rowers) {
         this.name = name;
