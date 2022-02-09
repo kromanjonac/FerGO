@@ -14,4 +14,12 @@ public class Rower {
     public String getName() {
         return name;
     }
+
+    public double getTime() {
+        return time;
+    }
+
+    public void setTime(double time) {
+        this.time = time;
+    }
 }

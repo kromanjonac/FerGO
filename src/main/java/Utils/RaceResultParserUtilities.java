@@ -1,10 +1,13 @@
 package Utils;
 
+import CustomClasses.RaceEvent;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class RaceResultParserUtilities {
 
@@ -43,6 +46,31 @@ public class RaceResultParserUtilities {
             e.printStackTrace();
         }
         return "false";
+
+    }
+    public static void updateRaceEventFromFile(RaceEvent raceEvent, String pathname) throws IOException {
+        Path raceResultFile = Paths.get(pathname);
+        List<String> lines = Files.readAllLines(raceResultFile);
+        for (var s : lines){
+            String[] parsedLine = s.split("   ");
+            String[] timeStringArr = parsedLine[2].split(":");
+            double time = 0.;
+            time += Double.parseDouble(timeStringArr[0]);
+            time += Double.parseDouble(timeStringArr[1]);
+            String sName = parsedLine[1].split(" - ")[1];
+            String rowerName = parsedLine[1].split(" - ")[0];
+            for (var x : raceEvent.getTeamList()){
+                if(x.getShortName().equals(sName)){
+                    x.setTotalTime(x.getTotalTime() + time);
+                    for(var rower : x.getRowers()){
+                        if (rower.getName().equals(rowerName)){rower.setTime(time);}
+                    }
+
+                }
+            }
+
+
+        }
 
     }
 }
