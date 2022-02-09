@@ -95,9 +95,11 @@ public class InputLocalController implements Initializable {
             team.setRower(rower);
         }
 
-        if (!shortTeamField.getText().isEmpty()) {
-            team.setShortName(shortTeamField.getText().trim()); // check if necessary
+        if (shortTeamField.getText().isEmpty()) {
+            return;
+//            team.setShortName(shortTeamField.getText().trim()); // check if necessary
         }
+        team.setShortName(shortTeamField.getText().trim());
 
         Main.currentEvent.addTeam(team);
         Main.currentTeam++;

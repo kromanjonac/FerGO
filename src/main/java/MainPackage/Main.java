@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.LinkedList;
 
 public class Main extends Application {
 
@@ -44,6 +45,8 @@ private static AnchorPane racePane;
 // controls if a popup window should be invoked
 public static boolean isInputLocal = false;
 public static Object lock = new Object();
+
+public static LinkedList<String> racePaths;
 
 
 

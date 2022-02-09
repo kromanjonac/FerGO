@@ -2,6 +2,7 @@ package UserInterface;
 
 import CustomClasses.TableViewElement;
 import MainPackage.Main;
+import Utils.RaceResultParserUtilities;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import Utils.FolderListenerUtilities;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -57,6 +59,26 @@ public class RunRaceController implements Initializable {
 
 
 
+//        t = new Thread(){
+//            @Override
+//            public void run() {
+//                running.set(true);
+//                while(running.get()) {
+//                    String pathName = FolderListenerUtilities.newFileCreated(Main.listenerPath, running);
+//
+//
+//                    Platform.runLater(()->wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\") + 1))));
+//
+//                }
+//
+//            }
+//        };
+    }
+    @FXML
+    private void clickStart () {
+
+        Main.racePaths = new LinkedList<>();
+
         t = new Thread(){
             @Override
             public void run() {
@@ -64,16 +86,14 @@ public class RunRaceController implements Initializable {
                 while(running.get()) {
                     String pathName = FolderListenerUtilities.newFileCreated(Main.listenerPath, running);
 
-
+                    Main.racePaths.add(pathName);
                     Platform.runLater(()->wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\") + 1))));
 
                 }
 
             }
         };
-    }
-    @FXML
-    private void clickStart () {
+
         placeholderLabel.setText("Finished races will start appearing now");
         wholeView.setPlaceholder(placeholderLabel);
         startBtn.setDisable(true);
@@ -90,6 +110,10 @@ public class RunRaceController implements Initializable {
         //
         finishBtn.setDisable(true);
         startBtn.setDisable(false);
+
+        for (var racePath : Main.racePaths) {
+         String newFileName = RaceResultParserUtilities.createFormattedFile(racePath,racePath.substring(racePath.lastIndexOf('/')));
+        }
     }
 
 }
