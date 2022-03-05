@@ -1,5 +1,6 @@
 package InputLocal;
 
+import CustomClasses.RaceEvent;
 import MainPackage.Main;
 import Utils.FERGfileUtilities;
 import Utils.FileUtilities;
@@ -26,7 +27,12 @@ public class ManualEndController implements Initializable {
     public void clickGenerate () throws IOException {
         try {
             FileUtilities.generateRacFilesFromRaceEvent(Main.currentEvent, Main.racSavePath.toString());
-            FERGfileUtilities.createFERGfileFromRaceEvent(Main.currentEvent, "event1");
+            String s = FERGfileUtilities.createFERGfileFromRaceEvent(Main.currentEvent, "event1");
+
+            //to be deleted
+            RaceEvent helpingEvent = FERGfileUtilities.createRaceEventFromFergFile(s);
+            System.out.println(helpingEvent.getName());
+
             confirmLabel.setVisible(true);
             generateBtn.setDisable(true);
         } catch (NullPointerException e) {

@@ -1,6 +1,8 @@
 package Utils;
 
 import CustomClasses.RaceEvent;
+import CustomClasses.Rower;
+import CustomClasses.Team;
 import MainPackage.Main;
 
 import java.io.IOException;
@@ -11,9 +13,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class FERGfileUtilities {
+
     public static String createFERGfileFromRaceEvent(RaceEvent event, String filename) throws IOException {
         Path fergFile = Paths.get(Main.excelSavePath.toString().concat("\\").concat(filename).concat(".ferg"));
-        System.out.println(fergFile.toString());
+        //System.out.println(fergFile.toString());
         List<String> lines = new LinkedList<>();
         StringBuilder sb = new StringBuilder();
 
@@ -54,12 +57,47 @@ public class FERGfileUtilities {
             lines.add(team.getName());
             lines.add(team.getShortName());
             for (var rower : team.getRowers()){
-                if (rower.getName() == ""){break;} //zbog nečeg se stvori uvijek 8 veslača a azdnjih 8 je null??
+                if (rower.getName() == ""){break;} //zbog nečeg se stvori uvijek 8 veslača a neponujeni su s null imenom??
                 lines.add(rower.getName());
             }
         }
         Files.write(fergFile,lines);
         return fergFile.toString();
+    }
+
+    public static RaceEvent createRaceEventFromFergFile(String pathName) throws IOException {
+        Path path = Paths.get(pathName);
+        List<String> lines = Files.readAllLines(path);
+
+        //race event metadata
+
+        String eventName = lines.get(0);
+        int numberOfTeams = Integer.parseInt(lines.get(1));
+        int numberOfErgs = Integer.parseInt(lines.get(2));
+        int numberOfRowers = Integer.parseInt(lines.get(3));
+        int length = Integer.parseInt(lines.get(4));
+        int splits = Integer.parseInt(lines.get(5));
+
+        RaceEvent event = new RaceEvent(numberOfTeams, numberOfRowers, numberOfErgs, eventName, length, splits);
+
+        int index = 8;
+
+        for (int i = 0; i < numberOfTeams; i++) {
+            List<Rower> rowers = new LinkedList<>();
+            String teamName = lines.get(index++);
+            String shortName = lines.get(index++);
+
+            while(index < lines.size() &&lines.get(index) != "---"){
+                rowers.add(new Rower(lines.get(index++)));
+            }
+
+            Team team = new Team(teamName, rowers.toArray(new Rower[0]));
+
+            team.setShortName(shortName);
+
+        }
+
+        return event;
 
     }
 }
