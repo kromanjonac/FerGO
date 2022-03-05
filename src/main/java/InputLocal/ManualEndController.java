@@ -1,6 +1,7 @@
 package InputLocal;
 
 import MainPackage.Main;
+import Utils.FERGfileUtilities;
 import Utils.FileUtilities;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +26,7 @@ public class ManualEndController implements Initializable {
     public void clickGenerate () throws IOException {
         try {
             FileUtilities.generateRacFilesFromRaceEvent(Main.currentEvent, Main.racSavePath.toString());
+            FERGfileUtilities.createFERGfileFromRaceEvent(Main.currentEvent, "event1");
             confirmLabel.setVisible(true);
             generateBtn.setDisable(true);
         } catch (NullPointerException e) {

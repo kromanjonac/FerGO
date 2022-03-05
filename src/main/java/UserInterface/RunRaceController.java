@@ -1,5 +1,6 @@
 package UserInterface;
 
+import CustomClasses.RaceEvent;
 import CustomClasses.TableViewElement;
 import MainPackage.Main;
 import Utils.RaceResultParserUtilities;
@@ -113,6 +114,7 @@ public class RunRaceController implements Initializable {
         startBtn.setDisable(false);
 
         //Thread.sleep(500);
+
 
         for (var racePath : Main.racePaths) {
             if(racePath == null){break;}

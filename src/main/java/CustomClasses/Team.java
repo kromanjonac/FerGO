@@ -1,14 +1,15 @@
 package CustomClasses;
 
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import org.apache.poi.ss.usermodel.Row;
+
+import java.util.*;
 
 public class Team {
 
     String name;
     List<Rower> rowers;
+    Set<Rower> rowerSet;
     String shortName;
     double totalTime = 0.;
 
@@ -18,7 +19,7 @@ public class Team {
         this.rowers = new LinkedList<>();
 
         this.rowers.addAll(Arrays.asList(rowers));
-
+        rowerSet = new HashSet<Rower>(this.rowers);
 
     }
 
