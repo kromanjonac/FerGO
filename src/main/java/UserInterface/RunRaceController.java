@@ -85,8 +85,10 @@ public class RunRaceController implements Initializable {
                 while(running.get()) {
                     String pathName = FolderListenerUtilities.newFileCreated(Main.listenerPath, running);
 
-                    Main.racePaths.add(pathName);
-                    Platform.runLater(()->wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\") + 1))));
+                    Platform.runLater(()->Main.racePaths.add(pathName));
+                    if(pathName != null) {
+                        Platform.runLater(() -> wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\") + 1))));
+                    }
 
                 }
 
@@ -104,16 +106,19 @@ public class RunRaceController implements Initializable {
 
 
     @FXML
-    private void clickFinish () {
+    private void clickFinish () throws InterruptedException {
         running.set(false);
         //
         finishBtn.setDisable(true);
         startBtn.setDisable(false);
 
+        //Thread.sleep(500);
+
         for (var racePath : Main.racePaths) {
+            if(racePath == null){break;}
             List<String> stringList = Arrays.asList(racePath.split("//"));
             Collections.reverse(stringList);
-            String newFileName = RaceResultParserUtilities.createFormattedFile(racePath,stringList.get(0));
+            String newFileName = RaceResultParserUtilities.createFormattedFile(racePath,stringList.get(0).substring(stringList.get(0).lastIndexOf("\\")));
             System.out.println(racePath);
         }
 
