@@ -88,8 +88,15 @@ public class RunRaceController implements Initializable {
 
                     Platform.runLater(()->Main.racePaths.add(pathName));
                     if(pathName != null) {
-                        Platform.runLater(() -> wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\") + 1))));
-                    }
+                        Platform.runLater(() -> {
+                            TableViewElement el = new TableViewElement(pathName.substring(pathName.lastIndexOf("\\") + 1));
+                            el.getFinish().setOnAction(e -> {
+                                wholeView.getItems().remove(el);
+                                Main.racePaths.remove(pathName);
+                            });
+                            wholeView.getItems().add(el);
+                        })
+                    ;}
 
                 }
 
