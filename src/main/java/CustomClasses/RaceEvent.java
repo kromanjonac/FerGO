@@ -1,5 +1,6 @@
 package CustomClasses;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -72,4 +73,20 @@ public class RaceEvent {
     public int getSplits() {
         return splits;
     }
+
+
+    /* displays results like this:
+        teamName   formattedTime
+     */
+    public String displayResults(){
+        Collections.sort(teamList);
+        StringBuilder sb = new StringBuilder();
+        for (var team : teamList){
+            sb.append(team.getName()).append("   ");
+            sb.append(team.displayTime()). append("\n");
+        }
+        return sb.toString();
+    }
+
+
 }

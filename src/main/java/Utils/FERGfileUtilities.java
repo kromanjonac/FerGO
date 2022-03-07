@@ -87,7 +87,7 @@ public class FERGfileUtilities {
             String teamName = lines.get(index++);
             String shortName = lines.get(index++);
 
-            while(index < lines.size() &&lines.get(index) != "---"){
+            while(index < lines.size() && lines.get(index).equals("---")){
                 rowers.add(new Rower(lines.get(index++)));
             }
 

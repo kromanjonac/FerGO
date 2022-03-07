@@ -122,9 +122,10 @@ public class FileUtilities {
             String teamName = row.getCell(0).getStringCellValue();
 
             Team currTeam = new Team(teamName);
+            currTeam.setShortName(row.getCell(1).getStringCellValue());
 
             for (int j = 2; j < numberOfRowers + 2; j++) {
-                Rower rower = new Rower(row.getCell(j).getStringCellValue());
+                Rower rower = new Rower(row.getCell(j).getStringCellValue().concat(" - ").concat(currTeam.getShortName()));
                 currTeam.getRowers().add(rower);
             }
 
