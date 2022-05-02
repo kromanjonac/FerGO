@@ -78,6 +78,8 @@ public class RunRaceController implements Initializable {
     private void clickStart () {
 
         Main.racePaths = new LinkedList<>();
+        if(Main.currentTeamList != null){for(var x : Main.currentTeamList){System.out.println(x);}}
+        Main.currentTeamList = new LinkedList<>();
 
         t = new Thread(){
             @Override

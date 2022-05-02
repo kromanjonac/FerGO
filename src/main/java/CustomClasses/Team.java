@@ -26,6 +26,9 @@ public class Team implements Comparable<Team>{
 
     }
 
+
+
+
     public double getTotalTime() {
         return totalTime;
     }
@@ -45,7 +48,9 @@ public class Team implements Comparable<Team>{
     }
 
     public void setRower (Rower rower) {
+
         rowers.add(rower);
+        totalTime += rower.getTime();
     }
 
     public String getName() {
@@ -72,5 +77,12 @@ public class Team implements Comparable<Team>{
         sb.append(":"); //14:21.1 for example
         sb.append(seconds);
         return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return name + " " +
+
+                displayTime();
     }
 }

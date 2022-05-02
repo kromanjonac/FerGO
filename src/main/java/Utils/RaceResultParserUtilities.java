@@ -1,6 +1,8 @@
 package Utils;
 
 import CustomClasses.RaceEvent;
+import CustomClasses.Rower;
+import CustomClasses.Team;
 import MainPackage.Main;
 
 import java.io.FileWriter;
@@ -8,7 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.*;
 
 public class RaceResultParserUtilities {
 
@@ -23,10 +25,47 @@ public class RaceResultParserUtilities {
         return sb.append("\n").toString();
     }
 
+    private static double getSecondsFromString(String line){
+        double minutes = Double.parseDouble(line.split(":")[0])*60
+                + Double.parseDouble(line.split(":")[1]);
+        return minutes;
+    }
+
+    public static void updateRaces(Collection<Team> teamCollection, String line){
+        List<Team> teamList = new LinkedList<>(teamCollection);
+        String[] lineElements = line.split("   ");
+        String nameRower = lineElements[1].split(" - ")[0];
+        String nameTeam = lineElements[1].split(" - ")[1];
+        double time = getSecondsFromString(lineElements[2]);
+        double avg = getSecondsFromString(lineElements[3]);
+        Rower rower = new Rower(nameRower);
+        rower.setTime(time);
+
+        boolean teamExists = false;
+        Team rowerTeam = new Team("");
+        for (var team : teamCollection){
+            if (team.getName().equals(nameTeam)){
+                teamExists = true;
+                rowerTeam = team;
+                break;
+            }
+        }
+
+        if (teamExists) {
+            rowerTeam.setRower(rower);
+        } else {
+            rowerTeam = new Team(nameTeam);
+            rowerTeam.setRower(rower);
+            teamCollection.add(rowerTeam);
+        }
+        //System.out.println(rowerTeam);
+
+    }
+
     public static String createFormattedFile(String paths, String name){ //creates excel ready file
         if (paths == null) {return "false";} //should never happen
         Path path = Paths.get(paths);
-        Path newFile = Paths.get(Main.finalResPath.toString().concat("_formated_").concat(name));
+        Path newFile = Paths.get(Main.finalResPath.toString().concat(name).concat("_f.txt"));
         try {
             FileWriter myWriter = new FileWriter(newFile.toString());
             Files.readAllLines(path).stream().filter(o -> {//lambda that filters actual (usable) data from description
@@ -36,7 +75,8 @@ public class RaceResultParserUtilities {
                 return false;
             }).forEach(o -> { //lambda that writes all the lines to the created txt file
                 try {
-                    System.out.println(newFormattedLine(o));
+                    //System.out.println(newFormattedLine(o));
+                    updateRaces(Main.currentTeamList,newFormattedLine(o));
                     myWriter.write(newFormattedLine(o));
                 } catch (IOException e) {
                     e.printStackTrace();
