@@ -26,7 +26,7 @@ public class RaceResultParserUtilities {
     public static String createFormattedFile(String paths, String name){ //creates excel ready file
         if (paths == null) {return "false";} //should never happen
         Path path = Paths.get(paths);
-        Path newFile = Paths.get(Main.finalResPath.toString().concat(name));
+        Path newFile = Paths.get(Main.finalResPath.toString().concat("_formated_").concat(name));
         try {
             FileWriter myWriter = new FileWriter(newFile.toString());
             Files.readAllLines(path).stream().filter(o -> {//lambda that filters actual (usable) data from description
@@ -36,12 +36,14 @@ public class RaceResultParserUtilities {
                 return false;
             }).forEach(o -> { //lambda that writes all the lines to the created txt file
                 try {
+                    System.out.println(newFormattedLine(o));
                     myWriter.write(newFormattedLine(o));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
             myWriter.close();
+
             return "C:\\Users\\dobar\\OneDrive\\Radna površina\\Coding\\test_map\\".concat(name);
         } catch (IOException e) {
             e.printStackTrace();

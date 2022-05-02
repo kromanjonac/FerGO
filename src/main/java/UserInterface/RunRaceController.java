@@ -128,7 +128,7 @@ public class RunRaceController implements Initializable {
             List<String> stringList = Arrays.asList(racePath.split("//"));
             Collections.reverse(stringList);
             String newFileName = RaceResultParserUtilities.createFormattedFile(racePath,stringList.get(0).substring(stringList.get(0).lastIndexOf("\\")));
-            System.out.println(racePath);
+            //System.out.println(racePath);
         }
 
     }
