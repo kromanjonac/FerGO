@@ -3,13 +3,17 @@ package SettingsPaths;
 
 import MainPackage.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
-public class settingsController  {
+import java.util.ResourceBundle;
+
+public class settingsController implements Initializable {
 
 
 
@@ -124,4 +128,8 @@ public class settingsController  {
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        showCurrentSettings();
+    }
 }

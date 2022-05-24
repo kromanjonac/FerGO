@@ -2,6 +2,7 @@ package MainPackage;
 
 
 import CustomClasses.RaceEvent;
+import CustomClasses.Team;
 import InputLocal.InputPopupController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Main extends Application {
 
@@ -26,6 +28,8 @@ private static BorderPane mainLayout;
 // nasi podaci za obradu
 
 public static RaceEvent currentEvent;
+
+public static List<Team> currentTeamList; //dzomke dodao!!
 
 public static int currentTeam;
 

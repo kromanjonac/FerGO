@@ -1,16 +1,20 @@
 package CustomClasses;
 
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import org.apache.poi.ss.usermodel.Row;
 
-public class Team {
+import java.util.*;
+
+import static java.lang.Math.min;
+import static java.lang.Math.round;
+
+public class Team implements Comparable<Team>{
 
     String name;
     List<Rower> rowers;
+    Set<Rower> rowerSet;
     String shortName;
-    double totalTime = 0.;
+    double totalTime = 0.; //in seconds
 
     public Team (String name, Rower... rowers) {
         this.name = name;
@@ -18,9 +22,12 @@ public class Team {
         this.rowers = new LinkedList<>();
 
         this.rowers.addAll(Arrays.asList(rowers));
-
+        rowerSet = new HashSet<Rower>(this.rowers);
 
     }
+
+
+
 
     public double getTotalTime() {
         return totalTime;
@@ -41,7 +48,9 @@ public class Team {
     }
 
     public void setRower (Rower rower) {
+
         rowers.add(rower);
+        totalTime += rower.getTime();
     }
 
     public String getName() {
@@ -54,5 +63,26 @@ public class Team {
 
     public String getShortName() {
         return shortName;
+    }
+
+    @Override
+    public int compareTo(Team o) {
+        return (int) Math.round(this.totalTime - o.totalTime);
+    }
+    public String displayTime(){
+        int minutes = (int) (this.totalTime/60.);
+        double seconds = this.totalTime - minutes * 60.;
+        StringBuilder sb = new StringBuilder();
+        sb.append(minutes);
+        sb.append(":"); //14:21.1 for example
+        sb.append(seconds);
+        return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return name + " " +
+
+                displayTime();
     }
 }

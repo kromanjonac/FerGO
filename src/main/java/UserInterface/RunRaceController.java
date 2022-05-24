@@ -1,5 +1,6 @@
 package UserInterface;
 
+import CustomClasses.RaceEvent;
 import CustomClasses.TableViewElement;
 import MainPackage.Main;
 import Utils.RaceResultParserUtilities;
@@ -77,6 +78,8 @@ public class RunRaceController implements Initializable {
     private void clickStart () {
 
         Main.racePaths = new LinkedList<>();
+        if(Main.currentTeamList != null){for(var x : Main.currentTeamList){System.out.println(x);}}
+        Main.currentTeamList = new LinkedList<>();
 
         t = new Thread(){
             @Override
@@ -87,8 +90,15 @@ public class RunRaceController implements Initializable {
 
                     Platform.runLater(()->Main.racePaths.add(pathName));
                     if(pathName != null) {
-                        Platform.runLater(() -> wholeView.getItems().add(new TableViewElement(pathName.substring(pathName.lastIndexOf("\\") + 1))));
-                    }
+                        Platform.runLater(() -> {
+                            TableViewElement el = new TableViewElement(pathName.substring(pathName.lastIndexOf("\\") + 1));
+                            el.getFinish().setOnAction(e -> {
+                                wholeView.getItems().remove(el);
+                                Main.racePaths.remove(pathName);
+                            });
+                            wholeView.getItems().add(el);
+                        })
+                    ;}
 
                 }
 
@@ -114,12 +124,13 @@ public class RunRaceController implements Initializable {
 
         //Thread.sleep(500);
 
+
         for (var racePath : Main.racePaths) {
             if(racePath == null){break;}
             List<String> stringList = Arrays.asList(racePath.split("//"));
             Collections.reverse(stringList);
             String newFileName = RaceResultParserUtilities.createFormattedFile(racePath,stringList.get(0).substring(stringList.get(0).lastIndexOf("\\")));
-            System.out.println(racePath);
+            //System.out.println(racePath);
         }
 
     }

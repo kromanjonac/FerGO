@@ -2,6 +2,7 @@ package UserInterface;
 
 import CustomClasses.RaceEvent;
 import MainPackage.Main;
+import Utils.FERGfileUtilities;
 import Utils.FileUtilities;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,6 +40,7 @@ public class ExcelController implements Initializable {
     private void clickConfirm () throws IOException {
         RaceEvent event = FileUtilities.createRacFilesFromExcelSheet(Path.of(pathField.getText().trim()).toFile());
         FileUtilities.generateRacFilesFromRaceEvent(event,Main.racSavePath.toString());
+        FERGfileUtilities.createFERGfileFromRaceEvent(event, event.getName());
         confirmBtn.setDisable(true);
     }
 

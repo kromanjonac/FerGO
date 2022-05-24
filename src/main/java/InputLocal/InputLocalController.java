@@ -90,8 +90,10 @@ public class InputLocalController implements Initializable {
 
         //create new team
         Team team = new Team(teamNameField.getText());
+        team.setShortName(shortTeamField.getText());
         for (var currentRower: fieldList) {
-            Rower rower = new Rower(currentRower.getText().trim());
+            if (currentRower.getText() == ""){break;}
+            Rower rower = new Rower(currentRower.getText().trim().concat(" - ").concat(team.getShortName()));
             team.setRower(rower);
         }
 
